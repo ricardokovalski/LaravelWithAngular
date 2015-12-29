@@ -1,6 +1,6 @@
 <?php
 
-namespace ProjectRico;
+namespace ProjectRico\Entities;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -23,4 +23,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function projects()
+    {
+        return $this->hasMany('ProjectRico\Entities\Project');
+    }
 }

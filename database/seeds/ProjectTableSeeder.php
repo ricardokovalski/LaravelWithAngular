@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use ProjectRico\Entities\Project;
 
-class DatabaseSeeder extends Seeder
+class ProjectTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(ProjectTableSeeder::class);
-        //$this->call(ClientTableSeeder::class);
+        Project::truncate();
+        factory(Project::class, 20)->create();
     }
 }

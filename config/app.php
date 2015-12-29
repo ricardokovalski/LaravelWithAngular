@@ -147,6 +147,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -155,6 +157,7 @@ return [
         ProjectRico\Providers\AuthServiceProvider::class,
         ProjectRico\Providers\EventServiceProvider::class,
         ProjectRico\Providers\RouteServiceProvider::class,
+        ProjectRico\Providers\ProjectRicoRepositoriesProvider::class
 
     ],
 

@@ -1,6 +1,6 @@
 <?php
 
-$factory->define(ProjectRico\User::class, function (Faker\Generator $faker) {
+$factory->define(ProjectRico\Entities\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,
@@ -9,7 +9,7 @@ $factory->define(ProjectRico\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(ProjectRico\Client::class, function (Faker\Generator $faker) {
+$factory->define(ProjectRico\Entities\Client::class, function (Faker\Generator $faker) {
     return [
         'nome' => $faker->name,
         'responsavel' => $faker->name,
@@ -17,5 +17,17 @@ $factory->define(ProjectRico\Client::class, function (Faker\Generator $faker) {
         'telefone' => $faker->phoneNumber,
         'endereco' => $faker->address,
         'observacoes' => $faker->sentence,
+    ];
+});
+
+$factory->define(ProjectRico\Entities\Project::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'description' => $faker->paragraph,
+        'progress' => $faker->numberBetween(0, 100),
+        'status' => $faker->randomElement(['A','F','P']),
+        'due_date' => $faker->dateTime,
+        'owner_id' => $faker->numberBetween(1, 10),
+        'client_id' => $faker->numberBetween(1, 20),
     ];
 });

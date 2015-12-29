@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use ProjectRico\Client;
+use ProjectRico\Entities\Client;
 
 class ClientTableSeeder extends Seeder
 {
@@ -13,6 +13,6 @@ class ClientTableSeeder extends Seeder
     public function run()
     {
         Client::truncate();
-        factory(Client::class, 10)->create();
+        factory(Client::class, 20)->create();
     }
 }

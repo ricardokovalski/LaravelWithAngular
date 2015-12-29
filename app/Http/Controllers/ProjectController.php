@@ -3,36 +3,37 @@
 namespace ProjectRico\Http\Controllers;
 
 use Illuminate\Http\Request;
-use ProjectRico\Repositories\ClientRepository;
-use ProjectRico\Services\ClientService;
+use ProjectRico\Repositories\ProjectRepository;
+use ProjectRico\Services\ProjectService;
 
-class ClientController extends Controller
-{
+class ProjectController extends Controller
+{    
     /**
      *
-     * @var ClientRepository
+     * @var ProjectRepository
      */
     private $repository;
     
     /**
      *
-     * @var ClientService
+     * @var use ProjectService
      */
     private $service;
     
     /**
      * 
-     * @param ClientRepository $repository
-     * @param ClientService $service
+     * @param ProjectRepository $repository
+     * @param ProjectService $service
      */
-    public function __construct(ClientRepository $repository, ClientService $service) {
+    public function __construct(ProjectRepository $repository, ProjectService $service)
+    {
         $this->repository = $repository;
         $this->service = $service;
     }
     
     public function index()
     {
-        return $this->repository->all();
+        return $this->repository->with(['client','owner'])->all();
     }
     
     public function store(Request $request)
@@ -42,7 +43,7 @@ class ClientController extends Controller
     
     public function show($id)
     {
-        return $this->repository->find($id);
+        return $this->repository->with(['client','owner'])->find($id);
     }
     
     public function update(Request $request, $id)
