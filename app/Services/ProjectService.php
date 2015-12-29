@@ -47,7 +47,7 @@ class ProjectService
         }
     }
     
-    public function uodate($data, $id)
+    public function update($data, $id)
     {
         try {
             
