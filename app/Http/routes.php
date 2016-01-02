@@ -21,6 +21,11 @@ Route::get('client/{id}', 'ClientController@show');
 Route::delete('client/{id}', 'ClientController@destroy');
 Route::put('client/{id}', 'ClientController@update');
 
+Route::get('project/{id}/members', 'ProjectMemberController@index');
+Route::post('project/{id}/member', 'ProjectMemberController@store');
+Route::get('project/{id}/member/{memberId}', 'ProjectMemberController@isMember');
+Route::delete('project/{id}/member/{memberId}', 'ProjectMemberController@destroy');
+
 Route::get('project/{id}/note', 'ProjectNoteController@index');
 Route::post('project/{id}/note', 'ProjectNoteController@store');
 Route::get('project/{id}/note/{noteId}', 'ProjectNoteController@show');

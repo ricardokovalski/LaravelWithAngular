@@ -30,4 +30,9 @@ class ProjectMemberRepositoryEloquent extends BaseRepository implements ProjectM
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
+    
+    public function deleteMemberOnProjectId($projectId, $memberId)
+    {
+        return ProjectMember::where('project_id',$projectId)->where('user_id',$memberId)->delete();
+    }
 }

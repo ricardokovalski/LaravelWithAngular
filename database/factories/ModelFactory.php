@@ -49,3 +49,10 @@ $factory->define(ProjectRico\Entities\ProjectTask::class, function (Faker\Genera
         'status' => $faker->randomElement(['A','F','P']),
     ];
 });
+
+$factory->define(ProjectRico\Entities\ProjectMember::class, function (Faker\Generator $faker) {
+    return [
+        'project_id' => rand(1,20),
+        'user_id' => rand(1,10),
+    ];
+});

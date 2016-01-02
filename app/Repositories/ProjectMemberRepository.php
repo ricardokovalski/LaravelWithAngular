@@ -10,5 +10,5 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface ProjectMemberRepository extends RepositoryInterface
 {
-    //
+    public function deleteMemberOnProjectId($projectId, $memberId);
 }
