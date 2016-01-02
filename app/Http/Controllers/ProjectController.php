@@ -33,7 +33,7 @@ class ProjectController extends Controller
     
     public function index()
     {
-        return $this->repository->with(['client','owner'])->all();
+        return $this->repository->with(['client','owner','notes'])->all();
     }
     
     public function store(Request $request)
@@ -43,7 +43,7 @@ class ProjectController extends Controller
     
     public function show($id)
     {
-        return $this->repository->with(['client','owner'])->find($id);
+        return $this->repository->with(['client','owner','notes'])->find($id);
     }
     
     public function update(Request $request, $id)

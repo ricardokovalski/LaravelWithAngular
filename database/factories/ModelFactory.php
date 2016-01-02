@@ -31,3 +31,21 @@ $factory->define(ProjectRico\Entities\Project::class, function (Faker\Generator 
         'client_id' => $faker->numberBetween(1, 20),
     ];
 });
+
+$factory->define(ProjectRico\Entities\ProjectNote::class, function (Faker\Generator $faker) {
+    return [
+        'project_id' => rand(1,20),
+        'title' => $faker->word,
+        'note' => $faker->paragraph,        
+    ];
+});
+
+$factory->define(ProjectRico\Entities\ProjectTask::class, function (Faker\Generator $faker) {
+    return [
+        'project_id' => $faker->numberBetween(1, 20),
+        'name' => $faker->sentence,
+        'due_date' => $faker->dateTime('now'),
+        'start_date' => $faker->dateTime('now'),
+        'status' => $faker->randomElement(['A','F','P']),
+    ];
+});

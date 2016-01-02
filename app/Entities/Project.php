@@ -20,4 +20,19 @@ class Project extends Model
         return $this->belongsTo('ProjectRico\Entities\Client');
     }
     
+    public function notes()
+    {
+        return $this->hasMany(ProjectNote::class);
+    }
+    
+    public function tasks()
+    {
+        return $this->hasMany(ProjectTask::class);
+    }
+    
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'project_members');
+    }
+    
 }
