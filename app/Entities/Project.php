@@ -17,7 +17,7 @@ class Project extends Model
     
     public function client()
     {
-        return $this->belongsTo('ProjectRico\Entities\Client');
+        return $this->belongsTo(Client::class);
     }
     
     public function notes()

@@ -5,6 +5,7 @@ namespace ProjectRico\Repositories;
 use Prettus\Repository\Eloquent\BaseRepository;
 use ProjectRico\Repositories\ProjectRepository;
 use ProjectRico\Entities\Project;
+use ProjectRico\Presenters\ProjectPresenter;
 
 class ProjectRepositoryEloquent extends BaseRepository implements ProjectRepository
 {
@@ -30,6 +31,11 @@ class ProjectRepositoryEloquent extends BaseRepository implements ProjectReposit
                 return true;
         }
         return false;
+    }
+    
+    public function presenter()
+    {
+        return ProjectPresenter::class;
     }
 }
 
