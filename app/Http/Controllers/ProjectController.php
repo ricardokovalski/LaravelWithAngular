@@ -5,6 +5,7 @@ namespace ProjectRico\Http\Controllers;
 use Illuminate\Http\Request;
 use ProjectRico\Repositories\ProjectRepository;
 use ProjectRico\Services\ProjectService;
+use LucaDegasperi\OAuth2Server\Facades\Authorizer;
 
 class ProjectController extends Controller
 {    
@@ -43,7 +44,14 @@ class ProjectController extends Controller
     
     public function show($id)
     {
-        return $this->repository->with(['client','owner','notes'])->find($id);
+        
+        if($this->checkProjectPermissions($id) == false)
+        {
+            return [
+                'error' => 'Access Forbidden'
+            ];
+        }
+        return $this->repository->with(['client','owner','notes'])->find($id);                
     }
     
     public function update(Request $request, $id)
@@ -55,4 +63,29 @@ class ProjectController extends Controller
     {
         $this->repository->delete($id);
     }
+    
+    private function checkProjectOwner($porjectId)
+    {
+        $userId = Authorizer::getResourceOwnerId();
+        
+        return $this->repository->isOwner($porjectId, $userId);        
+    }
+    
+    private function checkProjectMember($projectId)
+    {
+        $userId = Authorizer::getResourceOwnerId();
+        
+        return $this->repository->hasMember($projectId, $userId);
+    }
+    
+    private function checkProjectPermissions($projectId)
+    {
+        if($this->checkProjectOwner($projectId) || $this->checkProjectMember($projectId))
+        {
+            return true;
+        }
+        return false;
+    }
+    
+    
 }

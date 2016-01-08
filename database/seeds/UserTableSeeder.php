@@ -12,6 +12,14 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
+            
+        factory(\ProjectRico\Entities\User::class)->create([
+            'name' => 'ricardo.cruz',
+            'email' => 'ricardokovalskicruz@gmail.com',
+            'password' => bcrypt(123456),
+            'remember_token' => str_random(10),
+        ]);
+        
         factory(User::class, 10)->create();
     }
 }
