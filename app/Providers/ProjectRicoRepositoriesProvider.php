@@ -47,5 +47,10 @@ class ProjectRicoRepositoriesProvider extends ServiceProvider
             \ProjectRico\Repositories\ProjectMemberRepository::class,
             \ProjectRico\Repositories\ProjectMemberRepositoryEloquent::class
         );
+        
+        $this->app->bind(
+            \ProjectRico\Repositories\ProjectFileRepository::class,
+            \ProjectRico\Repositories\ProjectFileRepositoryEloquent::class
+        );
     }
 }

@@ -8,7 +8,6 @@ use Prettus\Validator\Exceptions\ValidatorException;
 
 class ProjectService
 {
-    
     /**
      *
      * @var ProjectRepository
