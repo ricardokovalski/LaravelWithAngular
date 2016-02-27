@@ -59,8 +59,8 @@ $factory->define(ProjectRico\Entities\ProjectMember::class, function (Faker\Gene
 
 $factory->define(ProjectRico\Entities\OAuthClient::class, function (Faker\Generator $faker) {
     return [
-        'id' => bcrypt(123456),
-        'secret' => bcrypt(654321),
+        'id' => 'appid1',
+        'secret' => 'secret',
         'name' => 'AngularApp',
     ];
 });
