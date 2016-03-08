@@ -35,4 +35,9 @@ class ProjectMemberRepositoryEloquent extends BaseRepository implements ProjectM
     {
         return ProjectMember::where('project_id',$projectId)->where('user_id',$memberId)->delete();
     }
+    
+    public function presenter()
+    {
+        return \ProjectRico\Presenters\ProjectMemberPresenter::class;
+    }
 }

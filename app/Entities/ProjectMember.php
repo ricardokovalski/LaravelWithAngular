@@ -14,14 +14,19 @@ class ProjectMember extends Model implements Transformable
         'project_id', 'user_id'
     ];
     
-    public function projects()
+//    public function projects()
+//    {
+//        return $this->hasMany(Project::class,'id','project_id');
+//    }
+    
+    public function member()
     {
-        return $this->hasMany(Project::class,'id','project_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
     
-    public function users()
-    {
-        return $this->hasMany(User::class,'id','user_id');
-    }
+//    public function users()
+//    {
+//        return $this->hasMany(User::class,'id','user_id');
+//    }
 
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use ProjectRico\Repositories\ProjectRepository;
 use ProjectRico\Services\ProjectService;
 use LucaDegasperi\OAuth2Server\Facades\Authorizer;
+use ProjectRico\Repositories\Criteria\Project\ProjectCriteria;
 
 class ProjectController extends Controller
 {    
@@ -34,7 +35,14 @@ class ProjectController extends Controller
     
     public function index()
     {
-        return $this->repository->with(['client','owner','notes'])->all();
+        //return $this->repository->with(['client','owner','notes'])->all();
+        //$this->repository->pushCriteria(new ProjectCriteria());
+        return $this->repository->scopeQuery(function($query){
+            return $query->join('project_members', 'project_members.project_id', '=', 'id')
+                        ->where('status', '=', 'F')
+                        ->where('project_members.user_id', '=', '1')
+                        ->orderBy('id','ASC'); 
+        })->all();
     }
     
     public function store(Request $request)

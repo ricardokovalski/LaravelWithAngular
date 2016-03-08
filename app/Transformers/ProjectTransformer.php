@@ -31,14 +31,14 @@ class ProjectTransformer extends TransformerAbstract
     {
         $client = $project->client;
         
-        return $this->item($client, new ProjectClientTransformer);
+        return $this->item($client, new ProjectClientTransformer());
     }
     
     public function includeMembers(Project $project)
     {
         $members = $project->members;
         
-        return $this->collection($members, new ProjectMemberTransformer);
+        return $this->collection($members, new MemberTransformer());
     }
     
 }

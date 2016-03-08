@@ -24,12 +24,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
     
-    public function projects()
-    {
-        return $this->hasMany('ProjectRico\Entities\Project');
-    }
+//    public function projects()
+//    {
+//        return $this->hasMany('ProjectRico\Entities\Project');
+//    }
     
-    public function projectsMember()
+    public function projects()
     {
         return $this->belongsToMany(Project::class, 'project_members');
     }

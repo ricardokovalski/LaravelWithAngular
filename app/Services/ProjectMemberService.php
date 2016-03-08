@@ -72,7 +72,7 @@ class ProjectMemberService
     
     public function allMembers($id)
     {
-        return $this->repository->with('users')->findWhere(['project_id' => $id])->all();
+        return $this->repository->findWhere(['project_id' => $id]);
     }
 }
 
