@@ -35,14 +35,28 @@ class ProjectController extends Controller
     
     public function index()
     {
-        //return $this->repository->with(['client','owner','notes'])->all();
+        return $this->repository->with(['client','owner','notes'])->all();
+        
         //$this->repository->pushCriteria(new ProjectCriteria());
-        return $this->repository->scopeQuery(function($query){
-            return $query->join('project_members', 'project_members.project_id', '=', 'id')
-                        ->where('status', '=', 'F')
-                        ->where('project_members.user_id', '=', '1')
-                        ->orderBy('id','ASC'); 
-        })->all();
+        
+        // $arrProjetos = $this->repository->skipPresenter()->scopeQuery(function($query){
+        //     return $query->select('id','client_id','name')
+        //                 ->join('project_members', 'project_members.project_id', '=', 'id')
+        //                 ->where('status', '=', 'F')
+        //                 ->where('project_members.user_id', '=', '1')
+        //                 ->orderBy('id','ASC'); 
+        // })->all();
+        
+        // return $arrProjetos;
+        
+//        $arrayProjetos = array();
+//        foreach ($arrProjetos as $key => $array) {
+//            foreach ($array as $elemento) {
+//                $arrayProjetos[$elemento["project_id"]] = $elemento;
+//            }
+//        }
+        
+        // view('project.projects', ['projetos' => $arrProjetos]);
     }
     
     public function store(Request $request)
@@ -59,7 +73,7 @@ class ProjectController extends Controller
                 'error' => 'Access Forbidden'
             ];
         }
-        return $this->repository->with(['client','owner','notes'])->find($id);                
+        return $this->service->show($id);          
     }
     
     public function update(Request $request, $id)
@@ -69,7 +83,7 @@ class ProjectController extends Controller
     
     public function destroy($id)
     {
-        $this->repository->delete($id);
+        return $this->service->destroy($id);
     }
     
     private function checkProjectOwner($porjectId)

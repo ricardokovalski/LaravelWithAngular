@@ -5,6 +5,7 @@ namespace ProjectRico\Services;
 use ProjectRico\Repositories\ClientRepository;
 use ProjectRico\Validators\ClientValidator;
 use Prettus\Validator\Exceptions\ValidatorException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ClientService
 {
@@ -50,8 +51,35 @@ class ClientService
                 'error' => true,
                 'message' => $e->getMessageBag()
             ];
+        }catch (ModelNotFoundException $e) {
+            return ['error'=>true, 'message' => 'Cliente não pode ser atualizado.'];
         }
         
+    }
+
+    public function show($id){
+
+        try{
+            return $this->repository->find($id);
+        }catch (ModelNotFoundException $e) {
+            return [
+                'error' => true,
+                'message' => 'Cliente não encontrado'
+            ];
+        }
+    }
+
+    public function destroy($id){
+
+        try {
+            $this->repository->delete($id);
+            return ['success'=>true, 'message' => 'Cliente deletado com sucesso!'];
+        } catch (ModelNotFoundException $e) {
+            return ['error'=>true, 'message' => 'Cliente não encontrado.'];
+        } catch (\Exception $e) {
+            return ['error'=>true, 'message' => 'Ocorreu algum erro ao excluir o cliente.'];
+        }
+
     }
 }
 
